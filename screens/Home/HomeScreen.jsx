@@ -46,32 +46,34 @@ export default function HomeScreen() {
   return (
     <>
       <BasketBar />
-      <SafeAreaView className="px-4 pb-14">
+      <SafeAreaView className="pb-14">
         <View className="bg-white pb-4">
-          <View className="flex-row pb-3 items-center mt-2 space-x-2">
-            <Image
-              className="h-7 w-7 bg-gray-300 p-4 rounded-full"
-              source={{ uri: "https://links.papareact.com/wru" }}
-            />
-            <View className="flex-1">
-              <Text className="font-bold text-gray-400 text-xs">
-                Deliver Now!
-              </Text>
-              <View className="flex-row items-center space-x-1">
-                <Text className="font-bold text-xl">Current Location</Text>
-                <ChevronDownIcon size={20} color={"red"} />
+          <View className="px-4">
+            <View className="flex-row pb-3 items-center mt-2 space-x-2">
+              <Image
+                className="h-7 w-7 bg-gray-300 p-4 rounded-full"
+                source={{ uri: "https://links.papareact.com/wru" }}
+              />
+              <View className="flex-1">
+                <Text className="font-bold text-gray-400 text-xs">
+                  Deliver Now!
+                </Text>
+                <View className="flex-row items-center space-x-1">
+                  <Text className="font-bold text-xl">Current Location</Text>
+                  <ChevronDownIcon size={20} color={"red"} />
+                </View>
               </View>
+              <UserIcon size={25} color={"red"} />
             </View>
-            <UserIcon size={25} color={"red"} />
-          </View>
 
-          <View className="flex-row items-center">
-            <TextInput
-              placeholder="Restaurants and cuisines"
-              keyboardType="default"
-              className="flex-1 bg-gray-100 placeholder:text-black h-10 px-2 rounded-md"
-            />
-            <AdjustmentsVerticalIcon size={28} color={"red"} />
+            <View className="flex-row items-center">
+              <TextInput
+                placeholder="Restaurants and cuisines"
+                keyboardType="default"
+                className="flex-1 bg-gray-100 placeholder:text-black h-10 px-2 rounded-md"
+              />
+              <AdjustmentsVerticalIcon size={28} color={"red"} />
+            </View>
           </View>
         </View>
 
