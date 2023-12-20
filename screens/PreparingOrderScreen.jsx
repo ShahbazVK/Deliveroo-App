@@ -3,13 +3,17 @@ import React, { useEffect } from "react";
 import * as Animatable from "react-native-animatable";
 import * as Progress from "react-native-progress";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { emptyBasket } from "../features/basketSlice";
 
 const PreparingOrderScreen = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate("Delivery");
+      // dispatch(emptyBasket());
     }, 2000);
   }, []);
 

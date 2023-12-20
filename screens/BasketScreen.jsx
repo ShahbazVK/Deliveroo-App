@@ -11,12 +11,18 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRestaurant } from "../features/restaurantSlice";
 import {
+  emptyBasket,
   removeFromBasket,
   selectBasketItems,
   selectBasketTotal,
 } from "../features/basketSlice";
 import { XCircleIcon } from "react-native-heroicons/solid";
 import { urlFor } from "../sanity";
+
+const toFixed = (num, fixed) => {
+  var re = new RegExp("^-?\\d+(?:.\\d{0," + (fixed || -1) + "})?");
+  return num.toString().match(re)[0];
+};
 
 const BasketScreen = () => {
   const [groupedItemsInBasket, setGroupedItemsInBasket] = useState([]);
@@ -38,6 +44,7 @@ const BasketScreen = () => {
     }, {});
 
     setGroupedItemsInBasket(groupedItems);
+    if (!items.length) navigation.navigate("Home");
   }, [items]);
 
   return (
@@ -87,7 +94,9 @@ const BasketScreen = () => {
               />
               <Text className="flex-1">{items[0]?.name}</Text>
 
-              <Text className="text-gray-600">${items[0]?.price}</Text>
+              <Text className="text-gray-600">
+                ${toFixed(items[0]?.price, 2)}
+              </Text>
 
               <TouchableOpacity>
                 <Text
@@ -114,11 +123,15 @@ const BasketScreen = () => {
 
           <View className="flex-row justify-between">
             <Text>Order Total</Text>
-            <Text className="font-extrabold">${basketTotal + 5.99}</Text>
+            <Text className="font-extrabold">
+              ${toFixed(basketTotal + 5.99, 2)}
+            </Text>
           </View>
 
           <TouchableOpacity
-            onPress={() => navigation.navigate("PreparingOrder")}
+            onPress={() => {
+              navigation.navigate("PreparingOrder");
+            }}
             className="rounded-lg bg-[#00CCBB] p-4"
           >
             <Text className="text-center text-white text-lg font-bold">
